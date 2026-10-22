@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if student %}
+        {{ student.name }} – Подгруппы
+    {% else %}
+        Студент не найден – Подгруппы
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if student %}
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title page-title">{{ student.name }}</h1>
+
+                <p class="card-text">
+                    <strong>ID:</strong> {{ student.id }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Группа:</strong>
+                    <a href="{% url 'groups:detail' student.group.id %}">
+                        {{ student.group.name }}
+                    </a>
+                    ({{ student.group.course_title }})
+                </p>
+
+                <p class="card-text">
+                    <strong>Подгруппа:</strong>
+                    {% if subgroup %}
+                        <a
+                            href="{% url 'subgroups:detail' subgroup.id %}"
+                            class="badge bg-success text-decoration-none"
+                        >
+                            подгруппа {{ subgroup.number }}
+                        </a>
+                    {% else %}
+                        <span class="badge bg-secondary">не распределён</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    {% else %}
+        <h1 class="text-danger">Студент не найден</h1>
+        <p>Студент с указанным идентификатором отсутствует.</p>
+    {% endif %}
+
+    <a
+        href="{% url 'students:list' %}"
+        class="btn btn-outline-secondary mt-3"
+    >
+        ← к списку студентов
+    </a>
+{% endblock %}

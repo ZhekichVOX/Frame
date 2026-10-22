@@ -1,0 +1,22 @@
+<tr>
+    <td>{{ number }}</td>
+    <td>
+        <a href="{% url 'students:detail' student.id %}">
+            {{ student.name }}
+        </a>
+    </td>
+    <td>
+        <a href="{% url 'groups:detail' student.group.id %}">
+            {{ student.group.name }}
+        </a>
+    </td>
+    <td>
+        {% if subgroup %}
+            <a href="{% url 'subgroups:detail' subgroup.id %}">
+                подгруппа {{ subgroup.number }}
+            </a>
+        {% else %}
+            <span class="text-muted">—</span>
+        {% endif %}
+    </td>
+</tr>

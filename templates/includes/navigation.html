@@ -1,0 +1,18 @@
+<nav class="nav site-nav">
+    <a
+        class="nav-link{% if request.resolver_match.namespace == 'homepage' %} active{% endif %}"
+        href="{% url 'homepage:index' %}"
+    >Главная</a>
+    <a
+        class="nav-link{% if request.resolver_match.namespace == 'groups' %} active{% endif %}"
+        href="{% url 'groups:list' %}"
+    >Группы</a>
+    <a
+        class="nav-link{% if request.resolver_match.namespace == 'students' %} active{% endif %}"
+        href="{% url 'students:list' %}"
+    >Студенты</a>
+    <a
+        class="nav-link{% if request.resolver_match.namespace == 'subgroups' %} active{% endif %}"
+        href="{% url 'subgroups:list' %}"
+    >Подгруппы</a>
+</nav>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Подгруппы – Подгруппы
+{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">Подгруппы</h1>
+    <p class="text-muted">Всего подгрупп: {{ subgroups|length }}</p>
+
+    <div class="row g-3">
+        {% for subgroup in subgroups %}
+            <div class="col-12 col-md-6 col-lg-4">
+                {% include "subgroups/includes/subgroup_card.html" %}
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info mb-0">
+                    Подгруппы ещё не сформированы. Сформировать их можно
+                    в консольной версии: <code>python main.py</code>,
+                    пункт 8.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

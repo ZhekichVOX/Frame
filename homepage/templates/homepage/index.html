@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Главная – Подгруппы
+{% endblock %}
+
+{% block content %}
+    <section class="hero mb-4">
+        <h1 class="display-5 fw-bold">Формирование учебных подгрупп</h1>
+        <p class="hero-meta mb-0">
+            Учебный год {{ academic_year }} · сегодня {{ today|date:"d.m.Y" }}
+        </p>
+    </section>
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-md-4">
+            <a class="stat-tile" href="{% url 'groups:list' %}">
+                <span class="stat-value">{{ groups|length }}</span>
+                <span class="stat-label">групп</span>
+            </a>
+        </div>
+        <div class="col-12 col-md-4">
+            <a class="stat-tile" href="{% url 'students:list' %}">
+                <span class="stat-value">{{ students|length }}</span>
+                <span class="stat-label">студентов</span>
+            </a>
+        </div>
+        <div class="col-12 col-md-4">
+            <a class="stat-tile" href="{% url 'subgroups:list' %}">
+                <span class="stat-value">{{ subgroups|length }}</span>
+                <span class="stat-label">подгрупп</span>
+            </a>
+        </div>
+    </div>
+
+    <p>Основные разделы:</p>
+    <a href="{% url 'groups:list' %}" class="btn btn-primary me-2">Группы</a>
+    <a href="{% url 'students:list' %}" class="btn btn-secondary me-2">
+        Студенты
+    </a>
+    <a href="{% url 'subgroups:list' %}" class="btn btn-success">Подгруппы</a>
+{% endblock %}

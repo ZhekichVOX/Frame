@@ -1,0 +1,179 @@
+/* Собственные стили проекта. Bootstrap даёт базовую вёрстку, здесь - лицо сервиса. */
+
+:root {
+    --brand: #4f46e5;
+    --brand-dark: #3730a3;
+    --brand-soft: #eef2ff;
+    --ink: #1e1b4b;
+    --muted: #6b7280;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f8f9fc;
+    color: #1f2937;
+}
+
+main {
+    flex: 1;
+    padding-top: 2rem;
+}
+
+a {
+    color: var(--brand);
+}
+
+a:hover {
+    color: var(--brand-dark);
+}
+
+/* Шапка и навигация */
+
+.site-header {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.site-header .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.brand:hover {
+    color: var(--brand);
+}
+
+.brand-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.site-nav .nav-link {
+    padding: 0.45rem 0.9rem;
+    border-radius: 0.5rem;
+    color: #4b5563;
+}
+
+.site-nav .nav-link:hover {
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+}
+
+.site-nav .nav-link.active {
+    background: var(--brand);
+    color: #fff;
+}
+
+/* Главная */
+
+.hero {
+    padding: 2.5rem 2rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: #fff;
+}
+
+.hero .lead {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-meta {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.stat-tile {
+    padding: 1.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background: #fff;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.stat-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.12);
+}
+
+.stat-value {
+    display: block;
+    color: var(--brand);
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.stat-label {
+    color: var(--muted);
+}
+
+/* Карточки */
+
+.group-card,
+.subgroup-card {
+    height: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.group-card:hover,
+.subgroup-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.12);
+}
+
+.course-badge {
+    background: var(--brand-soft);
+    color: var(--brand-dark);
+    font-weight: 600;
+}
+
+.split-status {
+    font-weight: 600;
+}
+
+.page-title {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.table > :not(caption) > * > * {
+    padding: 0.7rem 0.9rem;
+}
+
+/* Подвал */
+
+.site-footer {
+    margin-top: 3rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid #e5e7eb;
+    background: #fff;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+    .hero {
+        padding: 1.75rem 1.25rem;
+    }
+}

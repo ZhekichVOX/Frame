@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if group %}
+        {{ group.name }} – Подгруппы
+    {% else %}
+        Группа не найдена – Подгруппы
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if group %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h1 class="card-title page-title">{{ group.name }}</h1>
+
+                <p class="card-text">
+                    <strong>ID:</strong> {{ group.id }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Курс:</strong> {{ group.course }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Студентов:</strong> {{ students|length }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Подгруппы:</strong>
+                    {% include "subgroups/includes/split_status.html" %}
+                </p>
+            </div>
+        </div>
+
+        {% if subgroups %}
+            <h2 class="h4">Подгруппы</h2>
+            <ul class="list-group mb-4">
+                {% for subgroup in subgroups %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="{% url 'subgroups:detail' subgroup.id %}">
+                            Подгруппа {{ subgroup.number }}
+                        </a>
+                        <span class="badge bg-primary">
+                            {{ subgroup.size }} студ.
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h2 class="h4">Студенты (по алфавиту)</h2>
+        <ol class="list-group list-group-numbered">
+            {% for student in students %}
+                <li class="list-group-item">
+                    <a href="{% url 'students:detail' student.id %}">
+                        {{ student.name }}
+                    </a>
+                </li>
+            {% empty %}
+                <li class="list-group-item">Студентов нет.</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <h1 class="text-danger">Группа не найдена</h1>
+        <p>Группа с указанным идентификатором отсутствует.</p>
+    {% endif %}
+
+    <a
+        href="{% url 'groups:list' %}"
+        class="btn btn-outline-secondary mt-3"
+    >
+        ← к списку групп
+    </a>
+{% endblock %}

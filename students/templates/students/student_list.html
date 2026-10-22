@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Студенты – Подгруппы
+{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">Студенты</h1>
+    <p class="text-muted">Всего студентов: {{ items|length }}</p>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover bg-white">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>ФИО</th>
+                    <th>Группа</th>
+                    <th>Подгруппа</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    {% include "students/includes/student_row.html" with number=forloop.counter student=item.student subgroup=item.subgroup %}
+                {% empty %}
+                    <tr>
+                        <td colspan="4">Студентов пока нет.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

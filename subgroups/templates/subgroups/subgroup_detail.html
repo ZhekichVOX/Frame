@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if subgroup %}
+        {{ subgroup.group.name }}, подгруппа {{ subgroup.number }} – Подгруппы
+    {% else %}
+        Подгруппа не найдена – Подгруппы
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if subgroup %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h1 class="card-title page-title">
+                    Подгруппа {{ subgroup.number }}
+                </h1>
+
+                <p class="card-text">
+                    <strong>ID:</strong> {{ subgroup.id }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Группа:</strong>
+                    <a href="{% url 'groups:detail' subgroup.group.id %}">
+                        {{ subgroup.group.name }}
+                    </a>
+                </p>
+
+                <p class="card-text">
+                    <strong>Студентов:</strong> {{ subgroup.size }}
+                </p>
+            </div>
+        </div>
+
+        <h2 class="h4">Состав</h2>
+        <ol class="list-group list-group-numbered">
+            {% for student in subgroup.students %}
+                <li class="list-group-item">
+                    <a href="{% url 'students:detail' student.id %}">
+                        {{ student.name }}
+                    </a>
+                </li>
+            {% empty %}
+                <li class="list-group-item">В подгруппе нет студентов.</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <h1 class="text-danger">Подгруппа не найдена</h1>
+        <p>Подгруппа с указанным идентификатором отсутствует.</p>
+    {% endif %}
+
+    <a
+        href="{% url 'subgroups:list' %}"
+        class="btn btn-outline-secondary mt-3"
+    >
+        ← к списку подгрупп
+    </a>
+{% endblock %}

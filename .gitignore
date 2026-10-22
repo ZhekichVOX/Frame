@@ -1,0 +1,21 @@
+# Виртуальное окружение
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# IDE
+.idea/
+.vscode/
+
+# Окружение и секреты
+.env
+
+# Методические материалы
+*.pdf
+
+# Django
+db.sqlite3
